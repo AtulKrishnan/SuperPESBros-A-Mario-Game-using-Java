@@ -1,0 +1,68 @@
+    public void move() {
+    	
+    	//Horizontal Collision
+    	hitBox.x += dx;
+    	for(Wall wall: board.walls) {
+    		if(hitBox.intersects(wall.hitBox)) {
+    			hitBox.x -= dx;
+    			while(!wall.hitBox.intersects(hitBox)) hitBox.x += Math.signum(dx);
+    			hitBox.x -= Math.signum(dx);
+    			dx = 0;
+    			x = hitBox.x;
+    		}
+    	}
+    	
+    	//Vertical Collision
+    	hitBox.y += dy;
+    	for(Wall wall: board.walls) {
+    		if(hitBox.intersects(wall.hitBox)) {
+    			hitBox.y -= dy;
+    			while(!wall.hitBox.intersects(hitBox)) hitBox.y += Math.signum(dy);
+    			hitBox.y -= Math.signum(dy);
+    			dy = 0;
+    			y = hitBox.y;
+    		}
+    	}
+    	
+    	if(x>0 && x<300) {                                                                   //If the player is within the moving area
+            x = x+dx;                                                                        //The x position is updated to become itself+the amount you moved
+            hitBox.x = x;
+            nx = nx+dx;                                                                      //Place the repeating background at regular speed
+            nx2 = nx2+dx;                                                                    //Place the repeating background at regular speed
+        }
+        if(x<=0) {                                                                           //If the player has reached he very left side of the screen(0px)
+            x=1;                                                                             //Move him up a pixel so he can move again
+            hitBox.x = x;
+            nx = nx+(dx*(int)0.5);                                                           //Place the background at a slower speed since Mario stops moving
+            nx2 = nx2+(dx*(int)0.5);                                                         //Place the background at a slower speed since Mario stops moving
+        }
+        if(x>=300) {                                                                         //If the player has reached the center of the screen(300px)
+            x=299;                                                                           //Move him down a pixel so he can move again
+            hitBox.x = x;
+            nx = nx+(dx*(int)0.5);                                                           //Place the background at a slower speed since Mario stops moving
+            nx2 = nx2+(dx*(int)0.5);                                                         //Place the background at a slower speed since Mario stops moving
+        }
+        if(dx>0)
+        	distanceTraveled++;
+        else if(dx<0)
+        	distanceTraveled--;
+        if(distanceTraveled>104) {
+        	x=299;
+        	hitBox.x = x;
+        }
+        if(x==1 && dx<0)
+            distanceTraveled++;
+        if(distanceTraveled<104){
+            nx=0;
+            nx2=-575;
+        }
+    	
+    }
+    
+    public void jump() {
+    	if(y == 285) {
+    		y = y + dy;
+    		hitBox.y = hitBox.y;
+    	}
+    	//dy += 0.3;
+    }
