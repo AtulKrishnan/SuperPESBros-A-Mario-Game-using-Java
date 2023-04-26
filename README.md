@@ -18,7 +18,7 @@ The player will have to avoid the obstacle walls, potholes in the ground and the
 ```
 create database SUPERPESBROS ;
 use SUPERPESBROS ;
-create table Leaderboard(Name varchar(255) , CoinsCollected int , PointsCollected int );
+create table Leaderboard(Name varchar(255) , PointsCollected int);
 
 select * from Leaderboard ;
 ```
