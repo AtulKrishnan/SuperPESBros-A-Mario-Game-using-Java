@@ -44,4 +44,6 @@ select * from USER where username ="ATHARV" ;
 2. Factory Pattern: An obstacle interface is created, which is implemented by classes Wall and Bouncer. The objects are created using the class ObjectFactory
 3. Observer Pattern: Not explicitly implemented, but can be seen as the database observes the username of the user who logs in and keeps track of it.
 
+<b>PS: You can play the game without the code, using the Jar file provided! </b>
+
 ## Hope you guys have fun building and playing this game!
